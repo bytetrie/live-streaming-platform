@@ -1,0 +1,210 @@
+/*
+  Recording/Player
+ */
+
+.recordWrap {
+  background-color: #EEE;
+  border: 1px solid #111;
+  border-radius: 3px;
+  padding: 15px;
+  position: relative;
+  z-index: 3;
+  &.file-upload-only {
+    .switchWrap {
+      display: none;
+    }
+    .fileUploadWrap {
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+}
+.recordWrapTop {
+  display: flex;
+  margin-bottom: 15px;
+}
+.recordBtnWrap {
+  display: flex;
+}
+.recordBtn{
+  position: relative;
+}
+.microphone{
+  width:12px;
+  height:36px;
+  background:#999;
+  border-radius:6px;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+  display:block;
+}
+.microphone:before{
+  content:"";
+  position:absolute;
+  bottom: -6px;
+  left: -6px;
+  width: 24px;
+  height: 4px;
+  background:#999;
+}
+.microphone:after{
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: -6px;
+  width: 18px;
+  height: 16px;
+  border: 3px solid #999;
+  border-top: 3px solid #eee;
+  border-radius: 0 0 18px 18px;
+}
+button[class*="progress-"] {
+  border: none;
+  .microphone {
+    display: none;
+  }
+}
+
+.submitBtn {
+  background-color: transparent;
+  border: 1px solid #BBB;
+  border-radius: 4px;
+  width: 100%;
+  padding: 10px 15px;
+  border-bottom: 2px solid #999;
+  color: #333;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 55px;
+  min-width: 55px;
+  outline-color: rgba(200,200,255,0.2);
+  outline-offset: 5px;
+  text-align: center;
+
+  &:active {
+    border-top: 2px solid #999;
+    border-bottom: 1px solid #BBB;
+  }
+}
+
+.upload-icon {
+  width: 10px;
+  height: 10px;
+  position: relative;
+  color: #2c3e50;
+  background-color: #999;
+
+  &:before, &:after {
+    content: "";
+    display: block;
+    position: absolute;
+  }
+
+  &:before {
+    bottom: 100%;
+    margin-left: -7px;
+    border-bottom: 12px solid #999;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+  }
+
+  &:after {
+    top: 100%;
+    left: -95%;
+    width: 300%;
+    height: 2px;
+    margin-top: 5px;
+    position: absolute;
+    background-color: #999;
+  }
+}
+
+
+.fileUploadWrap {
+  margin-right: 15px;
+  height: 88px;
+  width: 191px;
+  position: relative;
+
+  .chooseFileBtn {
+    background-color: transparent;
+    border: 2px dashed #BBB;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 10px 15px;
+    border-bottom: 2px solid #999;
+    color: #333;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+    min-width: 100%;
+    outline-color: rgba(200,200,255,0.2);
+    outline-offset: 5px;
+    box-sizing: border-box;
+
+    &:active {
+      border-top: 2px solid #999;
+      border-bottom: 1px solid #BBB;
+    }
+
+    .document-item {
+      display: block;
+      position: relative;
+      color: black;
+      border: solid 2px #999;
+      width: 29px;
+      height: 34px;
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 12px 0 0 11px;
+        border-color: #EEE transparent transparent #999;
+        position: absolute;
+        top: -2px;
+        left: 20px;
+      }
+
+      &:after {
+        content: attr(data-filetype);
+        left: -4px;
+        padding: 0px 2px;
+        text-align: right;
+        line-height: 1.3;
+        position: absolute;
+        background-color: #232323;
+        color: #fff;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        top: 15px;
+      }
+    }
+
+    &.dropping {
+      border-color: #00fa00;
+      background-color: #111;
+      .document-item:before {
+        border-color: #111 transparent transparent #999;
+      }
+    }
+  }
+
+  .chooseFileInput {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}

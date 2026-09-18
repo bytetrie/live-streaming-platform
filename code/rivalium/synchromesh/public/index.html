@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>exploratory streaming</title>
+
+	<meta name="description" content="experimental streaming platform">
+
+	<style>
+		html, body, #root
+		{
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+	</style>
+
+</head>
+
+<body id="body">
+
+	<main id="root"></main>
+
+	<script type="module">
+		import {Synchromesh} from "/_dist_/synchromesh.js"
+
+		Synchromesh.checkDB()
+			.then(useDB => new Synchromesh(
+				`#root`,
+				new URL(window.origin),
+				useDB,
+				false))
+	</script>
+
+</body>
+
+</html>

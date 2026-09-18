@@ -1,0 +1,45 @@
+<icecast>
+    <limits>
+        <clients>100</clients>
+        <sources>1</sources>
+        <source-timeout>10</source-timeout>
+    </limits>
+
+    <authentication>
+        <source-password>{{source_pass}}</source-password>
+        <admin-user>admin</admin-user>
+        <admin-password>{{admin_pass}}</admin-password>
+    </authentication>
+
+    <hostname>{{host_name}}</hostname>
+    <listen-socket>
+        <port>{{port}}</port>
+    </listen-socket>
+
+    <location>Noisecrypt</location>
+
+    <paths>
+        <logdir>./log</logdir>
+        <webroot>/usr/share/icecast2/web</webroot>
+        <adminroot>/usr/share/icecast2/admin</adminroot>
+        <alias source="/" destination="/status.xsl" />
+    </paths>
+
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <loglevel>3</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error -->
+    </logging>
+
+    <http-headers>
+        <header name="Access-Control-Allow-Origin" value="*" />
+    </http-headers>
+
+    <security>
+        <chroot>0</chroot>
+        <changeowner>
+            <user>{{user}}</user>
+            <group>{{group}}</group>
+        </changeowner>
+    </security>
+</icecast>

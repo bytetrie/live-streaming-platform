@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve noisecrypt server
+After=network.target
+
+[Service]
+User=pi
+Group=www-data
+WorkingDirectory={{path}}
+Environment="PATH={{path}}/venv/bin"
+ExecStart={{path}}/venv/bin/uwsgi noisecrypt_server.ini
+
+[Install]
+WantedBy=multi-user.target

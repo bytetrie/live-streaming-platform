@@ -1,0 +1,21 @@
+{
+  "name": "iceman",
+  "version": "0.0.0",
+  "description": "tool for creating a managed icecast server where mount points can be created and destroyed easily",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.11.1",
+    "prettier": "^2.0.4",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "o2xml": "^0.2.0"
+  }
+}

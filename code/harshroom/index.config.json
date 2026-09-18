@@ -1,0 +1,15 @@
+{
+  "description": "harsh room",
+  "title": "harsh room",
+  "analytics": "UA-87177015-1",
+  "scripts": {
+    "dev": [
+      ["react", "/node_modules/react/dist/react.js"],
+      ["reactDom", "/node_modules/react-dom/dist/react-dom.js"]
+    ],
+    "prod": [
+      ["react", "https://unpkg.com/react@15.3.1/dist/react.min.js"],
+      ["reactDom", "https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"]
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "n2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/noisecrypt.js",
+    "debug": "NODE_ENV='debug' node build/noisecrypt.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/inquirer": "^6.5.0",
+    "@types/node": "^13.11.1",
+    "@types/sqlite3": "^3.1.6",
+    "prettier": "^2.0.4",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "get-port": "^5.1.1",
+    "inquirer": "^7.1.0",
+    "sqlite3": "^4.1.1"
+  }
+}

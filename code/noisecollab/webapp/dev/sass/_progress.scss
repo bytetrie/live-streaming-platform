@@ -1,0 +1,62 @@
+@mixin size($w, $h) {
+  height: $h;
+  width: $w;
+}
+
+@mixin draw-progress--solid($progress, $color, $bg) {
+  @if ($progress <= 50) {
+    &:before {
+      background: $bg;
+      transform: rotate((100 - (50 - $progress)) / 100 * 360deg * -1);
+    }
+  } @else {
+    &:before {
+      background: $color;
+      transform: rotate((100 - $progress) / 100 * 360deg);
+    }
+  }
+
+  background: linear-gradient(to right, $color 50%, $bg 50%);
+}
+
+$bg: #333;
+$size: 88px;
+
+.pie-wrapper {
+  @include size($size, $size);
+  position: relative;
+
+  .pie {
+    @include size(100%, 100%);
+    clip: rect(0, $size, $size, $size / 2);
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.pie-wrapper--solid {
+  border-radius: 50%;
+  overflow: hidden;
+
+  &:before {
+    @include size($size, $size);
+    border-radius: 0 100% 100% 0 / 50%;
+    content: '';
+    display: block;
+    margin-left: 50%;
+    transform-origin: left;
+    transition: transform 100ms;
+  }
+
+  &.progress-0 {
+    background-color: #00FA00;
+  }
+
+  @for $i from 1 through 20 {
+    $p: $i * 5;
+    &.progress-#{$p} {
+      @include draw-progress--solid($p, $bg, #00FA00);
+    }
+  }
+}

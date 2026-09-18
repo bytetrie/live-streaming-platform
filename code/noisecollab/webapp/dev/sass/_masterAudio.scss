@@ -1,0 +1,126 @@
+/*
+  Master Player
+ */
+
+.masterWrap {
+  display: flex;
+  padding: 15px;
+  background-color: #FAFAFA;
+  border: 1px solid #111;
+  border-radius: 3px;
+  position: relative;
+  z-index: 3;
+}
+
+.submissions {
+  position: absolute;
+  right: 5px;
+  font-size: 9px;
+  top: 5px;
+  color: #999;
+  cursor: default;
+  line-height: 1;
+}
+
+.reloadBtn {
+  &.manual {
+    .autoReloadBtnIcon {
+      display: none;
+    }
+  }
+  &.auto {
+    .reloadBtnIcon {
+      display: none;
+    }
+  }
+  &.reloadable {
+    background-color: #111;
+    .reloadBtnIcon {
+      animation: rotate 1.5s linear infinite;
+      &:before {
+        border-color: transparent #00FA00 #00FA00 #00FA00;
+      }
+      &:after {
+        border-color: transparent transparent transparent #00FA00;
+      }
+    }
+  }
+}
+
+.reloadBtnIcon {
+  height: 60px;
+  padding: 15px;
+  width: 60px;
+  font-size: 30px;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  margin: 0;
+  position: relative;
+  &:before, &:after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+  }
+  &:before {
+    border-color: transparent #999 #999 #999;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+    height: 32px;
+    width: 32px;
+    transform: rotate(45deg);
+  }
+  &:after {
+    border-color: transparent transparent transparent #999;
+    border-style: solid;
+    border-width: 7px 0 7px 12px;
+    height: 0;
+    position: absolute;
+    top: 11px;
+    left: 45%;
+    width: 0;
+  }
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+.autoReloadBtnIcon {
+  height: 36px;
+  width: 36px;
+  box-sizing: border-box;
+  border: 3px solid #999;
+  background: none;
+  margin: 0;
+  position: relative;
+  border-radius: 50%;
+  &:before, &:after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+  }
+  &:before {
+    border-color: #fafafa #999 #fafafa #fafafa;
+    border-style: solid;
+    border-width: 4px 9px 4px 4px;
+    height: 0;
+    position: absolute;
+    top: 8px;
+    left: -10px;
+    width: 0;
+    transform: rotate(-27deg);
+  }
+  &:after {
+    border-color: #fafafa #fafafa #fafafa #999;
+    border-style: solid;
+    border-width: 4px 0 4px 9px;
+    height: 0;
+    position: absolute;
+    top: 42%;
+    left: 95%;
+    width: 0;
+    transform: rotate(-26deg);
+  }
+}

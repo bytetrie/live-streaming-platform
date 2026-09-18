@@ -1,0 +1,42 @@
+{
+    "routes": [
+        {
+            "match": "routes",
+            "src": "^(?!.*\\.html$).*",
+            "dest": "/index.html"
+        }
+    ],
+    "mount": {
+        "public": {
+            "url": "/",
+            "static": true,
+            "resolve": false
+        },
+        "src": "/_dist_"
+    },
+    "plugins": [
+        [
+            "@snowpack/plugin-run-script",
+            {
+                "cmd": "tsc --noEmit",
+                "watch": "$1 --watch"
+            }
+        ]
+    ],
+    "optimize": {
+        "entrypoints": [
+            "_dist_/synchromesh.js",
+            "_dist_/testSynchromeshRouter.js", 
+            "_dist_/testSynchromeshUI.js"
+        ],
+        "bundle": true,
+        "minify": true,
+        "target": "es2020"
+    },
+    "packageOptions": {
+        "installTypes": true
+    },
+    "devOptions": {
+        "port": 8787
+    }
+}

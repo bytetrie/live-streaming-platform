@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Streaming Platform As An Instrument, Experience And Pastime</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f2e7;
+    --bg-panel: #efe9d9;
+    --bg-panel-2: #e7e0cb;
+    --ink: #1d1a12;
+    --ink-soft: #4c4636;
+    --ink-faint: #8a8268;
+    --rule: #d9d0b7;
+    --rule-strong: #c3b895;
+    --accent: #29604f;
+    --accent-strong: #1a4436;
+    --accent-tint: #dbe7de;
+    --gold: #a97e2f;
+    --paper-shadow: 0 1px 0 rgba(29,26,18,0.05), 0 8px 24px -16px rgba(29,26,18,0.25);
+    --radius: 3px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent-tint); color: var(--accent-strong); }
+
+  a { color: var(--accent-strong); text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+  a:hover { color: var(--gold); }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .mono {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- header ---------- */
+  header.masthead {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 3rem;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  header.masthead h1 {
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    line-height: 1.12;
+    margin: 0 0 1.1rem;
+    max-width: 20ch;
+  }
+
+  header.masthead .dek {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 1.8rem;
+  }
+
+  .masthead-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.9rem;
+    font-family: monospace;
+    font-size: 0.82rem;
+  }
+  .masthead-links a {
+    padding: 0.35em 0.7em;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    background: var(--bg-panel);
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease;
+  }
+  .masthead-links a:hover {
+    background: var(--accent-tint);
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- layout: timeline rail + content ---------- */
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 2rem;
+    padding: 0 1.5rem;
+    align-items: start;
+  }
+
+  nav.timeline {
+    position: sticky;
+    top: 2rem;
+    padding: 3rem 0 3rem 0.5rem;
+    align-self: start;
+  }
+
+  nav.timeline ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    border-left: 2px solid var(--rule);
+  }
+
+  nav.timeline li { position: relative; }
+
+  nav.timeline a {
+    display: block;
+    padding: 0.55rem 0 0.55rem 1.1rem;
+    text-decoration: none;
+    color: var(--ink-faint);
+    font-family: monospace;
+    font-size: 0.82rem;
+    line-height: 1.35;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  nav.timeline a .yr {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--gold);
+    margin-bottom: 0.15rem;
+  }
+
+  nav.timeline a::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 1.05rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--rule-strong);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  nav.timeline a:hover { color: var(--ink); }
+  nav.timeline a:hover::before { transform: scale(1.15); }
+
+  nav.timeline li.active > a {
+    color: var(--accent-strong);
+    border-left-color: var(--accent);
+  }
+  nav.timeline li.active > a::before {
+    background: var(--accent);
+    border-color: var(--accent-strong);
+  }
+
+  main { min-width: 0; padding-bottom: 4rem; }
+
+  /* ---------- era sections ---------- */
+  section.era {
+    scroll-margin-top: 2rem;
+    padding: 3.2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  section.era:last-of-type { border-bottom: none; }
+
+  .era-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .era-year {
+    font-family: monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: var(--accent);
+    padding: 0.28em 0.6em;
+    border-radius: var(--radius);
+  }
+
+  section.era h2 {
+    font-size: 1.7rem;
+    margin: 0;
+  }
+
+  .era p, .lede {
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 0 0 1.2rem;
+  }
+
+  .lede { font-size: 1.08rem; }
+
+  details.notebook {
+    margin: 1.3rem 0 1.6rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--bg-panel);
+    max-width: 68ch;
+  }
+  details.notebook summary {
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    font-family: monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-strong);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  details.notebook summary::-webkit-details-marker { display: none; }
+  details.notebook summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.15s ease;
+    color: var(--gold);
+  }
+  details.notebook[open] summary::before { transform: rotate(90deg); }
+  details.notebook .notes {
+    padding: 0 1.1rem 1rem;
+  }
+  details.notebook ul {
+    margin: 0.4rem 0 0;
+    padding-left: 1.2rem;
+  }
+  details.notebook li {
+    margin-bottom: 0.55rem;
+    color: var(--ink-soft);
+    font-size: 0.97rem;
+  }
+  details.notebook li ul { margin-top: 0.4rem; }
+  details.notebook li li { font-size: 0.92rem; }
+
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.7rem;
+    margin: 1.1rem 0 1.6rem;
+  }
+  .links-row a {
+    font-family: monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.4em 0.75em;
+    border-radius: var(--radius);
+    border: 1px solid var(--rule-strong);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: all 0.15s ease;
+  }
+  .links-row a:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    background: var(--accent-tint);
+    transform: translateY(-1px);
+  }
+  .links-row a.tag-code::before { content: "⌥"; }
+  .links-row a.tag-demo::before { content: "▶"; color: var(--gold); }
+  .links-row a.tag-jump::before { content: "↧"; color: var(--accent); }
+
+  figure.plate {
+    margin: 1.4rem 0;
+    max-width: 640px;
+  }
+  figure.plate img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--rule);
+    box-shadow: var(--paper-shadow);
+  }
+
+  .plate-row {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .plate-row figure.plate { flex: 1 1 260px; }
+
+  /* ---------- media wells (viewable references) ---------- */
+  .media-well {
+    margin: 1.3rem 0 1.8rem;
+    padding: 1.1rem;
+    background: var(--bg-panel-2);
+    border: 1px solid var(--rule-strong);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    max-width: 680px;
+    scroll-margin-top: 2rem;
+  }
+  .media-well .media-tag {
+    font-family: monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-strong);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .media-well .media-tag::before { content: "#"; color: var(--gold); }
+  .media-well video, .media-well audio { max-width: 100%; display: block; border-radius: var(--radius); background: #000; }
+  .media-well audio { background: transparent; width: 100%; }
+  .media-well .caption {
+    margin: 1rem 0 0 0;
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 12px;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* pulse highlight when a media well is targeted via hash */
+  .media-well:target {
+    animation: pulse 1.6s ease;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(41,96,79,0.35); }
+    100% { box-shadow: 0 0 0 14px rgba(41,96,79,0); }
+  }
+
+  /* ---------- paper section ---------- */
+  section.paper-embed {
+    background: var(--bg-panel);
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.4rem 1.6rem;
+    max-width: 780px;
+  }
+  section.paper-embed embed {
+    width: 100%;
+    height: 620px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: #fff;
+  }
+  section.paper-embed .paper-fallback {
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-top: 0.6rem;
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    nav.timeline {
+      position: static;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 1rem;
+    }
+    nav.timeline ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 0.4rem;
+      border-left: none;
+      border-top: 2px solid var(--rule);
+      padding-top: 0.8rem;
+    }
+    nav.timeline li::before { display: none; }
+    nav.timeline a { padding: 0.4rem 0.6rem; border-left: none; border-bottom: 2px solid transparent; }
+    nav.timeline a::before { display: none; }
+    nav.timeline li.active > a { border-bottom-color: var(--accent); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header class="masthead">
+  <h1>Live Streaming Platform As An Instrument, Experience And Pastime</h1>
+  <p class="dek">
+    This is an archive of code and media related to a long-term creative project that spanned
+    <a href="https://louisfoster.com/live-streaming-platform">the early years of my software development career</a>.
+  </p>
+  <div class="masthead-links">
+    <a href="https://codeberg.org/bytetrie/live-streaming-platform" class="mono">Project Archive</a>
+    <a href="https://bytetrie.codeberg.page/live-streaming-platform/" class="mono">Project Archive Website</a>
+    <a href="#paper" class="mono">Project Paper</a>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="timeline" aria-label="Project timeline">
+    <ol>
+      <li><a href="#harshroom"><span class="yr">circa 2016</span>Harshroom</a></li>
+      <li><a href="#noisecollab"><span class="yr">circa 2017</span>Noisecollab</a></li>
+      <li><a href="#drawcollab"><span class="yr">circa 2018</span>Drawcollab</a></li>
+      <li><a href="#rpi-icecast"><span class="yr">circa 2019</span>Raspberry Pi and Icecast</a></li>
+      <li><a href="#noisecrypt"><span class="yr">circa 2020</span>_noisecrypt</a></li>
+      <li><a href="#rivalium"><span class="yr">circa 2021</span>Rivalium</a></li>
+      <li><a href="#post-rivalium">Post-Rivalium</a></li>
+      <li><a href="#paper"><span class="yr">ref</span>Paper</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section class="era" id="harshroom">
+      <div class="era-head">
+        <span class="era-year mono">circa 2016</span>
+        <h2>Harshroom</h2>
+      </div>
+      <p class="lede">
+        Harshroom was a prototype to visualize the concept of having a labyrith of rooms
+        containing spatialized audio streams. I used THREE.js for the 3D part and React
+        for the UI. Although the core idea was to not have a visual aspect, it served as
+        a way to communicate and imagine what it could be.
+      </p>
+
+      <details class="notebook">
+        <summary>Build notes</summary>
+        <div class="notes">
+          <ul>
+            <li>It will only build using Node 12.</li>
+            <li>Rollup for the build tool, which I believe was the preferred alternative to Grunt.</li>
+            <li>It appears I hand-inserted a live-reload script tag for development.</li>
+            <li>Three.js for the 3D rendering. I didn't really understand how to make a visuanl mesh and floor mesh for this, so I used ThreeBSP, which iirc resulted in fairly bad performance.</li>
+            <li>React 15 for the minimal UI stuff, definitely overkill.</li>
+            <li>Scss for building styles, which required a binary in order to compile.</li>
+            <li>I was mimicing the code style of Three.js, so lot's of white space.</li>
+            <li>My notes say that I was planning to expand this to include many rooms with stairs and hallways to join them. I eventually started to explore this separately when learning building game engines and levels.</li>
+            <li>This project was where I first learned about virtually spatialized audio.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="links-row">
+        <a class="tag-code" href="https://codeberg.org/bytetrie/live-streaming-platform/src/branch/main/code/harshroom">Harshroom code</a>
+        <a class="tag-demo" href="demo/harshroom/index.html">Harshroom live demo</a>
+      </div>
+
+      <figure class="plate">
+        <img src="assets/harshroom.avif" alt="harshroom">
+      </figure>
+    </section>
+
+    <section class="era" id="noisecollab">
+      <div class="era-head">
+        <span class="era-year mono">circa 2017</span>
+        <h2>Noisecollab</h2>
+      </div>
+      <p class="lede">
+        Noisecollab was a little experiment attempting to explore the "collaborative
+        audio" part of the concept. The idea was that participants would record a second
+        of audio, which would then upload to the server. The audio snippet would be
+        inserted into a 10 second audio loop. The updated loop will then prompt all
+        participants to reload their loop, and subsequently all future requests would
+        pull the newest loop.
+      </p>
+
+      <details class="notebook">
+        <summary>Build notes</summary>
+        <div class="notes">
+          <ul>
+            <li>I was now using Gulp, it seems in addition to Rollup.</li>
+            <li>It was primarily built around <a href="http://sox.sourceforge.net/">SoX</a>, "the Swiss Army knife of sound processing utilities".</li>
+            <li>I had written out <a href="code/noisecollab/MVP.md">a system design document</a> to help guide my implementation.</li>
+            <li>It appears I had tried a very simple (aka naive) approach to ensuring the integrity of the data. But I end up not using it any way, nor adding any login system.</li>
+            <li>I needed to implement a way to ensure audio seamlessness by splitting recordings over the beginning and end of the loop.</li>
+            <li>I used a request to random.org to get random values instead of generating them on the server.</li>
+            <li>I was making notes to myself in the code as I was thinking through problems, such as handling asynchronous data.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="links-row">
+        <a class="tag-code" href="https://codeberg.org/bytetrie/live-streaming-platform/src/branch/main/code/noisecollab">noisecollab code</a>
+        <a class="tag-jump" href="#noisecollab-video">noisecollab demo video</a>
+      </div>
+
+      <figure class="plate">
+        <img src="assets/noisecollab-still.jpg" alt="noisecollab">
+      </figure>
+
+      <div class="media-well" id="noisecollab-video">
+        <p class="media-tag mono">noisecollab-video</p>
+        <video controls preload="metadata" poster="assets/noisecollab-still.jpg" src="assets/noisecollab.mp4"></video>
+        <p class="caption">Warning: noise!</p>
+      </div>
+    </section>
+
+    <section class="era" id="drawcollab">
+      <div class="era-head">
+        <span class="era-year mono">circa 2018</span>
+        <h2>Drawcollab</h2>
+      </div>
+      <p class="lede">
+        With Drawcollab, I shifted gears back to graphics and tried building a
+        collaborative drawing experiment. It was mostly to learn Go for server-side
+        code, Redis to manage data, and C++ for OpenGL-based rendering.
+      </p>
+
+      <details class="notebook">
+        <summary>Build notes</summary>
+        <div class="notes">
+          <ul>
+            <li>This was one of my first WebSockets projects.</li>
+            <li>I was pretty new to memory management, so the program would often crash.</li>
+            <li>The choices I made regarding the languages was mostly about performance. I was getting tired of the limitations of the browser and node.js and wanted to see how different the experience would be using Go, C++, WebSockets, and Redis.</li>
+            <li>I recall really enjoying using Go. C++ on the otherhand was still beyond my ability at the time, I struggled with debugging and code structure.</li>
+            <li>I also recall having my mind blown by how fast it worked and how easily it handled all the participants using it.
+              <ul>
+                <li>One participant figured out how to abuse the API and very quickly filled the entire collaborative canvas. It was entertaining to watch as the room saw everything we did evaporate under a single color - I wish I had recorded it! It helped me grasp how easy and quickly it can be for people that want to "break" a thing, as soon as there's even a slight incentive to do so.
+                  <ul>
+                    <li>For reference, the exploit was just the lack of throttling. The message system took every request. It also made me realise there was a memory bug somewhere, I think in the C++ code, because at some point while handling the updates the program crashed.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>I was again making design notes and figuring out how to expand the project.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="links-row">
+        <a class="tag-code" href="https://codeberg.org/bytetrie/live-streaming-platform/src/branch/main/code/drawcollab">drawcollab code</a>
+      </div>
+    </section>
+
+    <section class="era" id="rpi-icecast">
+      <div class="era-head">
+        <span class="era-year mono">circa 2019</span>
+        <h2>Raspberry Pi and Icecast</h2>
+      </div>
+      <p class="lede">
+        Towards the end of 2019, I began to focus back towards audio and the realisation
+        of the original vision. It started with learning about synthesizers, both
+        physical and virtual, and building a self-hosted personal radio stream from my
+        library. I had visited
+        <a href="https://www.geoffsternartspace.com/about/">Geoff Stern Art Space</a>
+        and was exposed to the idea of using multi-channel audio for sound art. The
+        synthesis was to imagine taking a collection of many streaming URLs, and feeding
+        each one into a speaker. The speakers would immerse the participant in sound and
+        they could move through the soundscape via streams moving into and throughout the
+        channels.
+      </p>
+      <p>
+        I think this would work by using a cheap SBC like a Raspberry Pi Zero and
+        connecting it to only one or two channels, and coordinating every SBC used
+        through a local network. This project stalled because of the complexity of
+        trying to use a single machine, as well as handling both input and output, and
+        the requirement of so much hardware and technical setup. I abandoned this
+        approach for something easier for participants to access and use.
+      </p>
+
+      <details class="notebook">
+        <summary>Build notes</summary>
+        <div class="notes">
+          <ul>
+            <li>Attempted use of python and pyo to handle audio.</li>
+            <li>I was actively calculating prices to set up the system.</li>
+            <li>I recall encountering limits with doing concurrency / async code in Python in a way that I was familiar with in JavaScript.</li>
+            <li>Built many install / setup scripts with rudimentary exception handling.</li>
+            <li>Encountered xrun issues due to buffer size, I think that was new to me.</li>
+            <li>Iterations of development were split across completely new "versions" of the system. Usually appropriating chunks from the prior version, splitting stuff up, and throwing parts away that didn't work the way I'd hoped.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="links-row">
+        <a class="tag-code" href="https://codeberg.org/bytetrie/live-streaming-platform/src/branch/main/code/rpi_icecast">raspberry pi and icecast code</a>
+      </div>
+
+      <div class="plate-row">
+        <figure class="plate">
+          <img src="assets/icecast_setup_2.avif" alt="icecast setup 2">
+        </figure>
+        <figure class="plate">
+          <img src="assets/icecast_setup_1.avif" alt="icecast setup 1">
+        </figure>
+      </div>
+    </section>
+
+    <section class="era" id="noisecrypt">
+      <div class="era-head">
+        <span class="era-year mono">circa 2020</span>
+        <h2>_noisecrypt</h2>
+      </div>
+      <p class="lede">
+        After I realised Raspberry Pi + multiple audio interfaces + Icecast + Python +
+        bash wasn't going to work as a teachable system, I moved on to trying to build
+        this as a web app. The experience with that other system was informative and
+        provided me with a reference, but in comparison it felt much harder to achieve
+        the design I had converged on.
+      </p>
+      <p>
+        At this stage I had departed entirely from the "surrounded by speakers on
+        streaming audio" model and was building a glitchy performance tool. In
+        retrospect, I think I should've spent more time trying to really figure out the
+        validity of the design as something other people would enjoy using. However, I
+        was invited to present my project at workshops and get grants, so it resonated
+        with other people to that extent. However, it was difficult to articulate the
+        coherency between the original concept and what I was now building.
+      </p>
+      <p>
+        Working in the browser and centralizing the streams came with its own
+        complexity. What my code examples here don't reveal was how hard it was to
+        figure out how to get audio to segment then seamlessly join. Decompressed audio
+        doesn't look like a perfect representation of a pre-compressed chunk of audio.
+        Each type of compression results in a different looking artefact as well. The
+        wave is shaped different, if you treat each segment as an isolated unit you will
+        have compression artifacts, there might be padding, and all of it has to be
+        blended in with the rest of the audio to make it not pop. Beyond the audio you
+        have to handle the load on the server, storage, browser API support, and
+        performance.
+      </p>
+
+      <details class="notebook">
+        <summary>Build notes</summary>
+        <div class="notes">
+          <ul>
+            <li>Unique naming approach for the different component projects.</li>
+            <li>The use of running everything with it's own mini web app.</li>
+            <li>Use of Typescript for FE and BE (Deno).</li>
+            <li>Using a tool to help with testing recording audio input.</li>
+            <li>Makefiles to help manage build, run, and test scripts.</li>
+            <li>nginx and JS config templating.</li>
+            <li>sqlite / relational data to store stream and segment data.</li>
+            <li>Material UI and UI helpers for using the system.</li>
+            <li>Intended to be public - setup notes included.</li>
+            <li>Used for presenting at workshops.</li>
+            <li>Hash IDs for content addressing.</li>
+            <li>systemd service units for automating start up.</li>
+            <li>The use of a service to provide random selection to audio stream selection.</li>
+            <li>WASM for the encoding of audio segments, mostly <a href="https://github.com/AnthumChris/opus-stream-decoder">opus-stream-decoder</a>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <p>
+        This is meant to be an image of a desktop computer, a laptop, a phone, a server,
+        and human ears, all tangled together through a spaghetti-like network.
+      </p>
+      <figure class="plate">
+        <img src="assets/noisecrypt_brand.jpg" alt="noisecrypt brand">
+      </figure>
+
+      <div class="links-row">
+        <a class="tag-code" href="https://codeberg.org/bytetrie/live-streaming-platform/src/branch/main/code/noisecrypt">_noisecrypt code</a>
+        <a class="tag-jump" href="#noisecrypt-video">_noisecrypt demo video</a>
+      </div>
+
+      <div class="media-well" id="noisecrypt-video">
+        <p class="media-tag mono">noisecrypt-video</p>
+        <video controls preload="metadata" src="assets/noisecrypt_demo.mp4"></video>
+      </div>
+    </section>
+
+    <section class="era" id="rivalium">
+      <div class="era-head">
+        <span class="era-year mono">circa 2021</span>
+        <h2>Rivalium</h2>
+      </div>
+      <p class="lede">
+        After the first couple of workshops I ran with _noisecrypt, I wanted to make
+        some improvements of the system. The UI wasn't quite where I wanted it to be in
+        terms of how usable it was, there was a lot of copy and paste, separate web apps
+        for each part, and it wasn't clear how to use it altogether. I wanted to be able
+        to improve some of the client-side parts separately to the web app, so I moved
+        them into separate modules. I changed the same to try to indicate the type of
+        system it had become as "noisecrypt" I felt was invoking a different mental
+        image of the system to what it was.
+      </p>
+      <p>
+        One experiment that I couldn't get working was the use of
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioWorklet">Audioworklets</a>.
+        They were fairly new to browsers (added April 2021), and they were meant to
+        replace the deprecated ScriptProcessorNode. I was new to how to optimize for
+        them, so I couldn't figure out how to manage the very small buffer they handled.
+        I was doing too much work in them, which would cause overruns, and therefore
+        pops in the audio stream. I eventually abandoned them and returned to the
+        deprecated API.
+      </p>
+      <p>
+        I also spent a lot of effort building out a completely custom UI system and the
+        framework (on top of redom) to go with it. I probably should've avoided that,
+        but I was really interested in how to think through the problems and find
+        solutions (preferably, simpler) to those the mainstream frameworks solved.
+      </p>
+
+      <details class="notebook">
+        <summary>Build notes</summary>
+        <div class="notes">
+          <ul>
+            <li>CLI helper for running service.</li>
+            <li>Custom URL ID alphabet and length.</li>
+            <li>Completely new UI.</li>
+            <li>Create a UI component library.</li>
+            <li>UI contained it's own embedded "help" system.</li>
+            <li>Now using Snowpack build tool.</li>
+            <li>class / OO based UI code for the client-side app.</li>
+            <li>Basically an entirely custom UI framework (built on top of redom).</li>
+            <li>Developing client-side recording / playback systems as separate libraries that are then imported as npm dependencies.
+              <ul>
+                <li>Both have example server / UI to test the modules.</li>
+                <li>I provided example data for the examples.</li>
+              </ul>
+            </li>
+            <li>JSS for styling.</li>
+            <li>I think I developed some strange coding habits on this project, such as the dependence on method chaining.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="links-row">
+        <a class="tag-jump" href="#dawn-chorus">Rivalium example audio (dawn chorus)</a>
+        <a class="tag-jump" href="#rivalium-video">Rivalium user demo video</a>
+        <a class="tag-demo" href="demo/rivalium_ui/index.html">Rivalium UI component system demo</a>
+      </div>
+
+      <p>My performance gear used as part of an arts grant I received for this project.</p>
+      <figure class="plate">
+        <img src="assets/rivalium_setup.avif" alt="Rivalium setup">
+      </figure>
+
+      <div class="media-well" id="dawn-chorus">
+        <p class="media-tag mono">dawn-chorus</p>
+        <audio controls preload="metadata" src="assets/dawn-chorus-sample.aac"></audio>
+      </div>
+
+      <div class="media-well" id="rivalium-video">
+        <p class="media-tag mono">rivalium-video</p>
+        <video controls preload="metadata" src="assets/rivalium_how_to.mp4"></video>
+        <p class="caption">Narrator is not the author.</p>
+      </div>
+    </section>
+
+    <section class="era" id="post-rivalium">
+      <div class="era-head">
+        <h2>Post-Rivalium</h2>
+      </div>
+      <p class="lede">
+        After the performance grant and conference paper, I felt like I had learned what
+        I intended to and more. The project itself diverged so far from the original
+        vision as to no longer be recognisable. It went from conceptually a live audio
+        virtual world to a glitchy aleatoric networked feedback web music performance
+        platform.
+      </p>
+      <p>
+        It was fun to use and incredibly valuable for my learning experience. The reason
+        for the divergence was the practicality and feasibility of building out the
+        vision and my pursuit of the different tangents generated along the way. In the
+        end I had other projects take priority and wanted to learn something new.
+      </p>
+    </section>
+
+    <section class="era" id="paper">
+      <div class="era-head">
+        <span class="era-year mono">ref</span>
+        <h2>Project Paper</h2>
+      </div>
+      <section class="paper-embed">
+        <embed src="assets/paper.pdf" type="application/pdf" aria-label="Project paper PDF">
+        <p class="paper-fallback mono">
+          <a href="assets/paper.pdf">Open the paper directly</a>
+        </p>
+      </section>
+    </section>
+
+  </main>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var links = document.querySelectorAll('nav.timeline a');
+  var sections = Array.prototype.map.call(links, function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+
+  var map = new Map();
+  sections.forEach(function (sec, idx) {
+    map.set(sec, links[idx].parentElement);
+  });
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var li = map.get(entry.target);
+      if (!li) return;
+      if (entry.isIntersecting) {
+        document.querySelectorAll('nav.timeline li.active').forEach(function (el) {
+          el.classList.remove('active');
+        });
+        li.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(function (sec) { observer.observe(sec); });
+})();
+</script>
+
+</body>
+</html>

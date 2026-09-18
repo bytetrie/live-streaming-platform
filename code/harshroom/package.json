@@ -1,0 +1,39 @@
+{
+  "name": "Harshroom",
+  "version": "1.0.0",
+  "description": "Harshroom website",
+  "main": "development.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "node production",
+    "dev": "node development",
+    "start": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "blessed": "^0.1.81",
+    "chokidar": "^1.6.1",
+    "express": "^4.14.0",
+    "livereload": "^0.6.0",
+    "node-sass": "^7.0.1"
+  },
+  "dependencies": {
+    "babel-plugin-external-helpers": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "marked": "^0.3.6",
+    "pug": "^2.0.0-beta6",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "rollup": "^0.36.4",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-json": "^2.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1"
+  }
+}
