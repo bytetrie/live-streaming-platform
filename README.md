@@ -2,7 +2,7 @@
 
 This is an archive of code and media related to a long-term creative project
 that spanned
-[the early years of my software development career](https://louisfoster.com/live-streaming-platform).
+[the early years of my software development career](https://louisfoster.com/live-streaming-platform.html).
 
 [Project Archive](https://codeberg.org/bytetrie/live-streaming-platform)
 
